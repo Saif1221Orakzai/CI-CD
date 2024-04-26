@@ -1,29 +1,22 @@
 name: Generate Release Notes
-
 on:
   release:
     types: [published]
   workflow_dispatch:
-
 jobs:
   generate-release-notes:
     runs-on: ubuntu-latest
-    
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
     - name: Install dependencies
       run: npm install
-    
     - name: Setup git
       run: |
         git config user.email "i211221@nu.edu.pk"
         git config user.name "Saif1221Orakzai"
-      
     - name: Generate Release Notes
       run: npm run release
-      
     - name: Commit Release Notes
       run: |       
         git push --follow-tags origin main
