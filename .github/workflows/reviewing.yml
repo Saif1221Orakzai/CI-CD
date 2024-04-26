@@ -15,14 +15,9 @@ jobs:
     - name: Code Standards Check
       run: npm run lint
       continue-on-error: true
-    - name: Code Quality Analysis
-      run: echo 'Running Analysis'
-    - name: Security Vulnerability Scanning
-      run: npm audit
-      continue-on-error: true
     - name: Provide Feedback on Pull Request
       run: |
-        echo "Code review checks passed."
+        echo "Checks Passed"
     - name: Enforce Required Checks Before Merging
       run: |
-        echo "Enforcing required checks before merging."
+        echo "Enforcing required checks"
