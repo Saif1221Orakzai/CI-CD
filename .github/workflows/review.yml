@@ -1,0 +1,16 @@
+name: Code Review Workflow
+on:
+    push:
+        branches: [ main ]
+jobs:
+    review:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - name: Install dependencies 
+          run: npm install
+        - name: Review syntax
+          run: npm run lint
+        - name: Run tests
+          run: npm run test
+
