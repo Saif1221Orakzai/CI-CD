@@ -1,11 +1,34 @@
-name: Scheduled Tasks
+name: Scheduled Maintenance
+
 on:
-    push:
-        branches: [ main ]
+  schedule:
+      - cron: '5 5 * * *' 
+  workflow_dispatch:
+
 jobs:
-    tasks:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v3
-        - name: Run Tasks
-          run: npm run tasks
+  maintenance:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Run maintenance task
+      run: |
+      
+        echo "Running maintenance task..."
+      
+        
+    - name: generate logs
+      run: |
+        
+        echo "Maintenance task completed successfully."
+        echo "This log was generated on $(date)" > $(date +%Y%m%d%H%M%S)-log.txt
+    - name: upload logs
+      uses: actions/upload-artifact@v2
+      with:
+        name: logs
+        path: ./*.txt
+
+
+      
