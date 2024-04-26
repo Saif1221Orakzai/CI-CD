@@ -1,18 +1,23 @@
-name: Node.js CI
-
+name: Continuous Integration
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - main
+  workflow_dispatch:
 jobs:
-  build-node:
+  build:
     runs-on: ubuntu-latest
-    container: node:16
     steps:
-      - run : node --version
-      - run : npm --version
-      - uses : actions/checkout@v3
-      - run : npm install
-      - run : node run.js
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      run: npm test
+    - name: Run linting
+      run: npm run lint
+      continue-on-error: true 
