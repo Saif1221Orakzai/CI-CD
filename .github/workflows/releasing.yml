@@ -1,4 +1,4 @@
-name: Generate Release Notes
+name: Release Notes
 on:
   release:
     types: [published]

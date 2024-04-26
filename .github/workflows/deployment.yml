@@ -1,4 +1,4 @@
-name: Netlify Deployment
+name: Deployment
 on:
   push:
     branches:
